@@ -1,37 +1,34 @@
-﻿// See https://aka.ms/new-console-template for more information
+using AdventOfCode.Day_1;
+using AdventOfCode.Day_2;
 
-using System.Text.RegularExpressions;
+namespace AdventOfCode;
+using System;
 
-// Init 2 Lists
-List<int> col1 = new List<int>();
-List<int> col2 = new List<int>();
-
-try
+class Program
 {
-    // Read File, Split Into 2 Columns
-    foreach (var line in File.ReadLines("input.txt"))
+    static void Main(string[] args)
     {
-        // Split on Empty Space
-        var parts = Regex.Split(line.Trim(), @"\s+");
-        col1.Add(int.Parse(parts[0]));
-        col2.Add(int.Parse(parts[1]));
+        // Check if command-line argument for the day is provided
+        if (args.Length == 0)
+        {
+            Console.WriteLine("dotnet run day#");
+            return;
+        }
+
+        string day = args[0];
+
+        // Switch case to handle different days
+        switch (day.ToLower())
+        {
+            case "day1":
+                Day1.Execute();
+                break;
+            case "day2":
+                Day2.Execute();
+                break;
+            default:
+                Console.WriteLine($"Invalid day: {day}. Not found.");
+                break;
+        }
     }
 }
-catch (IOException e)
-{
-    Console.WriteLine(e.Message);
-}
-
-// Create Sorted Tuple
-var zipped = col1.OrderBy(x => x).Zip(col2.OrderBy(x => x), (x, y) => new { x, y });
-
-var distance = 0;
-
-// Sum differences 
-foreach (var tuple in zipped)
-{
-    distance += Math.Abs(tuple.x - tuple.y);
-}
-
-// Output result
-Console.WriteLine(distance);
