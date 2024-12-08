@@ -26,6 +26,9 @@ class Program
             case "day2":
                 Day2.Execute();
                 break;
+            case "day3":
+                // Day3.Execute();
+                break;
             default:
                 Console.WriteLine($"Invalid day: {day}. Not found.");
                 break;
