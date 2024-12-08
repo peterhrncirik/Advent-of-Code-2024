@@ -10,7 +10,7 @@ public class Day2
         
         try
         {
-            // Read File, Split Into 2 Columns
+            // Read File
             foreach (var line in File.ReadLines("Day 2/input.txt"))
             {
                 // Convert row into List of ints
